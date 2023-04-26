@@ -19,6 +19,8 @@
 }
 
 .content a {
+    display: block;
+    margin-top: 1rem;
     font-weight: bold;
     text-decoration: none;
     color: var(--green-500);

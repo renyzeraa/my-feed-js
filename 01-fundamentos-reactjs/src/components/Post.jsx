@@ -1,42 +1,46 @@
 import styles from './Post.module.css'
 import { Comment } from './Comment'
 import { Avatar } from './Avatar'
+import { format, formatDistanceToNow } from 'date-fns'
+import ptBR from 'date-fns/locale/pt-BR'
 
-export function Post() {
+export function Post({ id, author, content, publishedAt }) {
+    const publishedDateFormated = format(
+        publishedAt,
+        "d 'de' LLLL 'às' HH:mm'h'",
+        { locale: ptBR }
+    )
+    const publishedDateRelativeToNow = formatDistanceToNow(publishedAt, {
+        locale: ptBR,
+        addSuffix: true
+    })
+
     return (
-        <article className={styles.post}>
+        <article className={styles.post} id={id}>
             <header>
                 <div className={styles.author}>
-                    <Avatar hasBorder src="https://github.com/renyzeraa.png" />
+                    <Avatar hasBorder src={author.avatarUrl} />
                     <div className={styles.authorInfo}>
-                        <strong>Renan Silva</strong>
-                        <span>Web Developer</span>
+                        <strong>{author.name}</strong>
+                        <span>{author.role}</span>
                     </div>
                 </div>
                 <time
-                    title="25 de Março de 2023 ás 12:15h"
-                    dataTime="2023-03-25 12:15:44"
+                    title={publishedDateFormated}
+                    dataTime={publishedAt.toISOString()}
                 >
-                    Publicado a 1hr
+                    {publishedDateRelativeToNow}
                 </time>
             </header>
 
             <div className={styles.content}>
-                <p>
-                    <p>Fala galeraa 👋</p>
-                    <p>
-                        Acabei de subir mais um projeto no meu portifa. É um
-                        projeto que fiz no NLW Return, evento da Rocketseat.
-                    </p>
-                    <p>
-                        O nome do projeto é DoctorCare 🚀 👉
-                        <a href="#"> jane.design/doctorcare</a>
-                    </p>
-                    <p>
-                        <a href="#">#novoprojeto</a> <a href="#">#nlw</a>{' '}
-                        <a href="#">#rocketseat</a>
-                    </p>
-                </p>
+                {content.map(oContent => {
+                    if (oContent.type === 'paragraph') {
+                        return <p>{oContent.content}</p>
+                    } else if (oContent.type === 'link') {
+                        return <a href="#">{oContent.content}</a>
+                    }
+                })}
             </div>
 
             <form className={styles.commentForm}>
@@ -47,8 +51,6 @@ export function Post() {
                 </footer>
             </form>
             <div className={styles.commentList}>
-                <Comment />
-                <Comment />
                 <Comment />
             </div>
         </article>
