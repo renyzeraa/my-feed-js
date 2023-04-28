@@ -3,7 +3,7 @@ import { Avatar } from './Avatar'
 
 import styles from './Comment.module.css'
 
-export function Comment() {
+export function Comment({ content }) {
     return (
         <div className={styles.comment}>
             <Avatar hasBorder={false} src="https://github.com/renyzeraa.png" />
@@ -14,7 +14,7 @@ export function Comment() {
                             <strong>Renan Silva</strong>
                             <time
                                 title="25 de Março de 2023 ás 12:15h"
-                                dataTime="2023-03-25 12:15:44"
+                                dateTime="2023-03-25 12:15:44"
                             >
                                 Cerca de 1hr atrás
                             </time>
@@ -23,7 +23,7 @@ export function Comment() {
                             <Trash size={24} />
                         </button>
                     </header>
-                    <p>Muito bom dev !</p>
+                    <p>{content}</p>
                 </div>
                 <footer>
                     <button>
