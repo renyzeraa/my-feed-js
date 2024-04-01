@@ -1,6 +1,6 @@
-# Projeto Ignite Feed
+# Projeto My Feed
 
--   React com Javascript
--   Vite
--   CSS modules
--   Phosphor Icons
+- React com Javascript
+- Vite
+- CSS modules
+- Phosphor Icons
