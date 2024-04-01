@@ -1,8 +1,8 @@
 # Projeto My Feed 🚩
 
-## Descrição
-
 O My Feed é um projeto open source que simula uma rede social onde os usuários podem criar posts de deploy de projetos, comentar neles, reagir com emojis e remover seus próprios posts. O projeto foi desenvolvido utilizando React no início e finalizado com TypeScript. A estilização é feita com CSS normal, utilizando o template do React e o Vite como bundler.
+
+[Link Figma](https://www.figma.com/community/file/1113573231685349036/ignite-feed)
 
 ## Funcionalidades
 
