@@ -15,7 +15,7 @@ const posts = [
             role: 'Desenvolvedor frontend @IPMSistemas'
         },
         content: [
-            { type: 'paragraph', content: 'Fala galeraa 👋' },
+            { type: 'paragraph', content: 'Fala galera 👋' },
             {
                 type: 'paragraph',
                 content:
