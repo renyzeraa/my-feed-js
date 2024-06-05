@@ -29,6 +29,7 @@ export function Post({ id, author, content, publishedAt }) {
     }
 
     function deleteComment(commentToDelete) {
+        // não deve sofrer mutação, imutabilidade
         const newComments = comments.filter(comment => {
             return commentToDelete !== comment
         })
