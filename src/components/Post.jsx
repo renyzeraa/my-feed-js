@@ -18,14 +18,15 @@ export function Post({ id, author, content, publishedAt }) {
         addSuffix: true
     })
 
-    function handleCreateNewComment() {
-        event.preventDefault()
+    function handleCreateNewComment(oEv) {
+        oEv.preventDefault()
         setComments([...comments, newCommentText])
         setNewCommentText('')
     }
 
-    function handleNewCommentChange() {
-        setNewCommentText(event.target.value)
+    function handleNewCommentChange(oEv) {
+        oEv.target.setCustomValidity('')
+        setNewCommentText(oEv.target.value)
     }
 
     function deleteComment(commentToDelete) {
@@ -36,8 +37,14 @@ export function Post({ id, author, content, publishedAt }) {
         setComments(newComments)
     }
 
+    function handleCreateNewInvalid(oEv) {
+        oEv.target.setCustomValidity('Este campo é obrigatório')
+    }
+
+    const bEmptyComment = newCommentText.length === 0
+
     return (
-        <article className={styles.post}>
+        <article className={styles.post} data-id={id}>
             <header>
                 <div className={styles.author}>
                     <Avatar hasBorder src={author.avatarUrl} />
@@ -55,12 +62,12 @@ export function Post({ id, author, content, publishedAt }) {
             </header>
 
             <div className={styles.content}>
-                {content.map(oContent => {
+                {content.map((oContent, idx) => {
                     if (oContent.type === 'paragraph') {
-                        return <p key={oContent.content}>{oContent.content}</p>
+                        return <p key={idx}>{oContent.content}</p>
                     } else if (oContent.type === 'link') {
                         return (
-                            <p key={oContent.content}>
+                            <p key={idx}>
                                 <a href="#">{oContent.content}</a>
                             </p>
                         )
@@ -78,9 +85,11 @@ export function Post({ id, author, content, publishedAt }) {
                     onChange={handleNewCommentChange}
                     placeholder="Deixe seu comentário!"
                     value={newCommentText}
+                    onInvalid={handleCreateNewInvalid}
+                    required
                 ></textarea>
                 <footer>
-                    <button type="submit">Publicar</button>
+                    <button type="submit" disabled={bEmptyComment}>Publicar</button>
                 </footer>
             </form>
             <div className={styles.commentList}>
