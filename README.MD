@@ -46,6 +46,10 @@ npm install
 npm run dev
 ```
 
+<img width="1412" height="757" alt="Image" src="https://github.com/user-attachments/assets/183471c0-41a0-48b1-8c65-0a7e8a19a4ea" />
+
+<a href="https://my-feed-js.vercel.app/"> Deploy 🚀 </a>
+
 ## Contato
 
 <img align="left" src="https://avatars.githubusercontent.com/renyzeraa?size=100">
